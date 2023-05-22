@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>THUG SHAKE THUG SHAKE THUG SHAKE THUG SHAKE THUG SHAKE THUG SHAKE THUG SHAKE THUG SHAKE</title>
+    <link rel="icon" href="https://i.ibb.co/jRFPGWr/83794dcd-b5b0-45da-8150-7bf111adbd33.webp">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #play-button {
+            position: absolute;
+            top: 10px;
+            left: auto;
+            cursor: pointer;
+            max-width: 500px;
+            max-height: auto;
+        }
+
+        #moving-image {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: auto;
+        }
+
+        #gif-image {
+            display: none;
+            position: fixed;
+            top: 10px;
+            right: 0;
+            transform: translateY(-50%);
+            width: 30%;
+            height: auto;
+            animation: moveUpDown 4s infinite, enlargeDelarge 4s infinite;
+            transform-origin: top right;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(100%, 100%);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes enlargeDelarge {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes moveUpDown {
+            0%, 100% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(-40%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="background-music" src="https://dl.sndup.net/n2hh/Thug%20Shake.mp3" loop></audio>
+    <img id="play-button" src="https://i.ibb.co/LrpRpmF/THUGSHAKE.jpg" alt="Play Button">
+
+    <img src="https://i.ibb.co/GMyCsMt/517-5170858-free-smiley-gif-hd-png-download-removebg-preview.png" alt="Moving Image" id="moving-image">
+
+    <img src="https://media.tenor.com/B9yYP_xF--cAAAAd/thug-shaker-jeleel.gif" alt="GIF Image" id="gif-image">
+
+    <script>
+        var audio = document.getElementById('background-music');
+        var playButton = document.getElementById('play-button');
+        var movingImage = document.getElementById('moving-image');
+        var gifImage = document.getElementById('gif-image');
+        var middleImage = new Image();
+        middleImage.src = "https://assets.change.org/photos/3/to/cv/vUtOCvmkmJEYeHt-800x450-noPad.jpg?1680402457";
+        
+        playButton.addEventListener('click', function() {
+            audio.play();
+            playButton.style.display = 'none';
+            middleImage.style.maxWidth = '80%';
+            middleImage.style.maxHeight = 'auto';
+            middleImage.style.animation = 'spin 4s linear infinite';
+            document.body.appendChild(middleImage);
+        });
+
+        audio.addEventListener('pause', function() {
+            middleImage.style.animation = 'none';
+            movingImage.style.display = 'none';
+            gifImage.style.display = 'none';
+        });
+
+        audio.addEventListener('play', function() {
+            middleImage.style.animation = 'spin 4s linear infinite';
+            movingImage.style.display = 'block';
+            movingImage.style.animation = 'move 10s linear infinite';
+            gifImage.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
